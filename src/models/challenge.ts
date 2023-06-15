@@ -31,6 +31,10 @@ const ChallengeSchema = new Schema<Challenge>(
         active: {
             type: Boolean,
             required: false,
+        },
+        insignia: {
+            type: String,
+            required: false
         }
     },
     {

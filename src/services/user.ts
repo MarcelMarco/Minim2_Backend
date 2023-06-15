@@ -2,7 +2,7 @@ import { Types } from "mongoose";
 
 import { User } from '../interfaces/user.interface';
 import UserModel from "../models/user";
-import ChallengeModel from "../models/user";
+import ChallengeModel from "../models/challenge";
 
 const get_AllUsers = async() => {
     const responseItem = await UserModel.find({});
@@ -82,6 +82,14 @@ const add_Challenge = async(idUser: string, idChallenger: string) => {
     const challenge = await ChallengeModel.findById({_id: idChallenger});
     const responseItem = await UserModel.findByIdAndUpdate({_id: idUser},
         {$addToSet: {record: new Types.ObjectId(challenge?.id)}}, {new: true});
+    return responseItem;
+};
+
+export const add_Insignia = async(idUser: string, idChallenger: string) => {
+    const challenge = await ChallengeModel.findById({_id: idChallenger});
+    const responseItem = await UserModel.findByIdAndUpdate({_id: idUser},
+        // {$addToSet: {insignias: new Types.Array(challenge?.insignia)}}, {new: true});
+        {$addToSet: {insignias: challenge?.insignia}}, {new: true});
     return responseItem;
 };
 

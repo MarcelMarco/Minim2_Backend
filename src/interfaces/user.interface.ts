@@ -12,6 +12,7 @@ export interface User {
     followers?: ObjectId[];
     following?: ObjectId[];
     record?: ObjectId[]; //List of ended challenges
+    insignias?: [];
     role: "user" | "admin"; //admin == Has all the permissions 
     active: boolean; //When the user disables his or her account it is set false
 }

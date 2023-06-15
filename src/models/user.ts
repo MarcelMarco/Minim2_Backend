@@ -48,6 +48,9 @@ const UserSchema = new Schema<User>(
             type: [Schema.Types.ObjectId],
             ref: 'challenges',
         },
+        insignias:{
+            type: [],
+        },
         role: {
             type: String,
             enum: ["user", "admin"],

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import { get_AllUsers, get_User, get_Users, get_UserCount, get_UsersProfile, get_UserProfile, log_in,
     sign_up, update_User, add_Follow, delete_Follow, add_Challenge, disable_User, delete_User, unable_User,
-     get_following, get_not_following, get_following_count, get_followers_count, get_not_following_count, get_followers } from "../services/user";
+     get_following, get_not_following, get_following_count, get_followers_count, get_not_following_count, get_followers, add_Insignia } from "../services/user";
 
 const getAllUsers = async(req:Request, res:Response) => {
     try{
@@ -127,6 +127,16 @@ const addChallenge = async ({params}:Request, res:Response) => {
     try{
         const {idUser, idChallenge} = params;
         const response = await add_Challenge(idUser, idChallenge);
+        res.send(response);
+    }catch(e){
+        handleHttp(res, "ERROR_POST_USER");
+    }
+};
+
+export const addInsignia = async ({params}:Request, res:Response) => {
+    try{
+        const {idUser, idChallenge} = params;
+        const response = await add_Insignia(idUser, idChallenge);
         res.send(response);
     }catch(e){
         handleHttp(res, "ERROR_POST_USER");
